@@ -1,35 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import EventPoint from './components/EventPoint';
+import SortItem from './components/SortItem';
+import { SortingType } from './const';
+import { getRandomPoint } from './mock/points';
 
-function App() {
-  const [count, setCount] = useState(0)
+const COUNT_POINTS = 4;
 
+export default function App() {
+  const points = Array.from({length: COUNT_POINTS}, getRandomPoint);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h2 className="visually-hidden">Trip events</h2>
+      <form className="trip-events__trip-sort  trip-sort" action="#" method="get">
+        <SortItem name={SortingType.DAY.name} isDisabled={SortingType.DAY.isDisabled} isChecked={SortingType.DAY.isChecked} />
+        <SortItem name={SortingType.EVENT.name} isDisabled={SortingType.EVENT.isDisabled} isChecked={SortingType.EVENT.isChecked} />
+        <SortItem name={SortingType.TIME.name} isDisabled={SortingType.TIME.isDisabled} isChecked={SortingType.TIME.isChecked} />
+        <SortItem name={SortingType.PRICE.name} isDisabled={SortingType.PRICE.isDisabled} isChecked={SortingType.PRICE.isChecked} />
+        <SortItem name={SortingType.OFFER.name} isDisabled={SortingType.OFFER.isDisabled} isChecked={SortingType.OFFER.isChecked} />
+      </form>
+      <ul className="trip-events__list">
+        {points.map((point) => (
+          <EventPoint key={point.id} {...point} />
+        ))}
+      </ul>
     </>
   )
 }
-
-export default App
