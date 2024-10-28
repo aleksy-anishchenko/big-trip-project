@@ -34,5 +34,25 @@ function humanizePointDuration(dateFrom, dateTo) {
   return '';
 }
 
+function adaptPointToClientItem(point) {
+  const adaptedPoint = {
+    ...point,
+    basePrice: point['base_price'],
+    dateTo: point['date_to'],
+    dateFrom: point['date_from'],
+    isFavorite: point['is_favorite']
+  };
 
-export {getRandomNumber, getRandomArrayElement, humanizePointDate, humanizePointDuration};
+  delete adaptedPoint['base_price'];
+  delete adaptedPoint['date_to'];
+  delete adaptedPoint['date_from'];
+  delete adaptedPoint['is_favorite'];
+
+  return adaptedPoint;
+}
+
+function adaptPointToClient(points) {
+  return points.map((point) => adaptPointToClientItem(point));
+}
+
+export { getRandomNumber, getRandomArrayElement, humanizePointDate, humanizePointDuration, adaptPointToClient };
