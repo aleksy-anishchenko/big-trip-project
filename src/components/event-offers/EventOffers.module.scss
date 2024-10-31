@@ -4,8 +4,8 @@
 
 .event__offer-selector {
   margin-bottom: 6px;
-}
 
-.event__offer-selector:not(:last-of-type) {
+  &:not(:last-of-type) {
     margin-right: 6px;
+  }
 }

@@ -9,28 +9,28 @@
   cursor: default;
   -webkit-transition: color 0.2s;
   transition: color 0.2s;
-}
 
-.trip-sort__item:last-child {
+  &--day {
+    width: 55px;
+    text-align: center;
+    margin-right: 83px;
+  }
+
+  &--event {
+    width: 300px;
+  }
+
+  &--time {
+    width: 225px;
+  }
+
+  &--price {
+    width: 90px;
+  }
+
+  &:last-child {
     margin-right: 0;
-}
-
-.trip-sort__item--day {
-  width: 55px;
-  text-align: center;
-  margin-right: 83px;
-}
-
-.trip-sort__item--event {
-  width: 300px;
-}
-
-.trip-sort__item--time {
-  width: 225px;
-}
-
-.trip-sort__item--price {
-  width: 90px;
+  }
 }
 
 .trip-sort__btn {
@@ -42,10 +42,10 @@
   border: 1px solid transparent;
   border-radius: 14px;
   cursor: pointer;
-}
 
-.trip-sort__btn:hover {
-  color: #000000;
+  &:hover {
+    color: #000000;
+  }
 }
 
 .trip-sort__input:checked + .trip-sort__btn {
@@ -54,7 +54,7 @@
   border-color: #000000;
 }
 
-.trip-sort__input:checked +  .trip-sort__btn::before {
+.trip-sort__input:checked + .trip-sort__btn::before {
   content: "";
   position: absolute;
   top: 50%;

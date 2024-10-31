@@ -1,7 +1,7 @@
-import style from './eventList.module.scss';
+import lcs from './EventList.module.scss';
 import { mockPoints } from '../../mock/mockPoints';
-import EventPoint from '../event-point/EventPoint';
-import EventEditPoint from '../event-edit-point/EventEditPoint';
+import EventPoint from '../point/event-point/EventPoint';
+import EventEditPoint from '../point/event-edit-point/EventEditPoint';
 import { useState } from 'react';
 
 export default function EventList() {
@@ -9,7 +9,7 @@ export default function EventList() {
   const [activePointId, setActivePointId] = useState('');
 
   return (
-    <ul className={style['trip-events__list']}>
+    <ul className={lcs.tripEventsList}>
       {events.map((point) => (
         activePointId === point.id
           ? <EventEditPoint key={point.id} point={point} onActivatePoint={setActivePointId} />

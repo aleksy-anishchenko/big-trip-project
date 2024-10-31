@@ -19,9 +19,9 @@
      -moz-appearance: none;
           appearance: none;
   border: none;
-}
 
-.event__input--time {
-  width: 130px;
-  text-align: center;
+  &--time {
+    width: 130px;
+    text-align: center;
+  }
 }

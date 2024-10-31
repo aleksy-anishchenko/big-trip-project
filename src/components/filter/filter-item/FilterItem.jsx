@@ -1,20 +1,20 @@
-import style from './FilterItem.module.scss';
+import lcs from './FilterItem.module.scss';
 
 export default function FilterItem({value}) {
   const isChecked = value === 'EVERYTHING';
   const filterValue = `filter-${value.toLowerCase()}`
   return (
-    <div className={style['trip-filters__filter']}>
+    <div className={lcs.tripFiltersFilter}>
       <input
         id={filterValue}
-        className={`${style['trip-filters__filter-input']} visually-hidden`}
+        className={`${lcs.tripFiltersFilterInput} visually-hidden`}
         type="radio"
         name="trip-filter"
         value={value.toLowerCase()}
         checked={isChecked}
         onChange={() => {}}
       />
-      <label className={style['trip-filters__filter-label']} htmlFor={filterValue}>{value}</label>
+      <label className={lcs.tripFiltersFilterLabel} htmlFor={filterValue}>{value}</label>
     </div>
   )
 }

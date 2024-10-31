@@ -16,14 +16,16 @@
   cursor: pointer;
   -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
 }
 
-.trip-filters__filter-label:hover {
-  opacity: 1;
-}
-.trip-filters__filter-label:active {
-  opacity: 0.6;
-}
 .trip-filters__filter-input:checked + .trip-filters__filter-label {
   opacity: 1;
   cursor: default;

@@ -6,10 +6,10 @@
   padding: 5px 2px;
   margin-right: 18px;
   border-bottom: 1px solid #0d8ae4;
-}
 
-.event__field-group--destination {
-  width: 290px;
+  &--destination {
+    width: 290px;
+  }
 }
 
 .event__input {
@@ -23,21 +23,21 @@
      -moz-appearance: none;
           appearance: none;
   border: none;
-}
 
-.event__input--destination {
-  width: 150px;
-}
+  &--destination {
+    width: 150px;
 
-.event__input--destination::-webkit-calendar-picker-indicator {
-  display: none;
+    &::-webkit-calendar-picker-indicator {
+      display: none;
+    }
+  }
 }
 
 .event__label {
   margin-right: 5px;
   cursor: pointer;
-}
 
-.event__label::first-letter {
-  text-transform: capitalize;
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }

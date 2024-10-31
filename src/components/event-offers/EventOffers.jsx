@@ -1,10 +1,10 @@
-import './EventOffers.scss';
+import lcs from './EventOffers.module.scss';
 
 export default function EventOffers({ title, price }) {
   return (
-    <li className="event__offer">
-      <span className="event__offer-title">{title}</span>
-      <span className="event__offer-price">+€&nbsp;{price}</span>
+    <li className={lcs.EventOffers}>
+      <span className={lcs.EventOfferTitle}>{title}</span>
+      <span className={lcs.eventOfferPrice}>+€&nbsp;{price}</span>
     </li>
   )
 }
