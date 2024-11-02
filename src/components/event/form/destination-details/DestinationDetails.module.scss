@@ -1,0 +1,29 @@
+.event__section {
+  &:not(:last-child) {
+    margin-bottom: 28px;
+  }
+}
+
+.event__section-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #ffd054;
+
+  &--destination {
+    margin-bottom: 8px;
+    margin-left: 20px;
+  }
+}
+
+.event__destination-description {
+  width: 560px;
+  margin: 0;
+  margin-bottom: 16px;
+  margin-left: 20px;
+  font-size: 15px;
+  line-height: 18px;
+}

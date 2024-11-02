@@ -13,14 +13,6 @@
   }
 }
 
-.page-header__container {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: start;
-      align-items: flex-start;
-  padding-left: 110px;
-}
-
 .page-header__logo {
   display: block;
   width: 42px;
@@ -49,6 +41,14 @@
     width: 2px;
     background-color: rgba(255, 255, 255, 0.58);
   }
+}
+
+.page-header__container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: start;
+      align-items: flex-start;
+  padding-left: 110px;
 }
 
 .trip-main {

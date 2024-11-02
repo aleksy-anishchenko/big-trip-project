@@ -55,4 +55,8 @@ function adaptPointToClient(points) {
   return points.map((point) => adaptPointToClientItem(point));
 }
 
-export { getRandomNumber, getRandomArrayElement, humanizePointDate, humanizePointDuration, adaptPointToClient };
+function capitalizeFirstLetter(string) {
+  return string.replace(/^\w/, c => c.toUpperCase());
+}
+
+export { getRandomNumber, getRandomArrayElement, humanizePointDate, humanizePointDuration, adaptPointToClient, capitalizeFirstLetter };

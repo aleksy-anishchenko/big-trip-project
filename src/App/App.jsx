@@ -1,6 +1,6 @@
 import SortList from '../components/sort/sort-list/SortList';
 import FilterList from '../components/filter/filter-list/FilterList'
-import EventList from '../components/event-list/EventList';
+import EventList from '../components/event/event-list/EventList';
 import lcs from './App.module.scss';
 import nc from 'classnames'
 

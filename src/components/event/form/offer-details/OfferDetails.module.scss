@@ -1,0 +1,31 @@
+.event__section {
+  &:not(:last-child) {
+    margin-bottom: 28px;
+  }
+
+  &--offers {
+    padding: 0 20px;
+  }
+}
+
+.event__section-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #ffd054;
+
+  &--offers {
+    margin-bottom: 15px;
+  }
+}
+
+.event__available-offers {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: -6px;
+}
