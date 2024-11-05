@@ -1,7 +1,13 @@
 import cn from 'classnames';
 import lcs from './PriceInput.module.scss';
 
-export default function PriceInput({price}) {
+export default function PriceInput({price, setPointState}) {
+
+  function handlePriceChange(evt) {
+    const numericValue = evt.target.value.replace(/\D/g, '') || 0;
+    setPointState((point) => ({ ...point, basePrice: numericValue }));
+  }
+
   return (
     <div className={lcs.eventFieldGroup}>
       <label className={lcs.eventLabel} htmlFor="event-price">
@@ -14,6 +20,7 @@ export default function PriceInput({price}) {
         type="text"
         name="event-price"
         value={price}
+        onChange={handlePriceChange}
       />
     </div>
   )

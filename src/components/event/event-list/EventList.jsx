@@ -5,14 +5,14 @@ import PointEditForm from '../point/point-edit-form/PointEditForm';
 import { useState } from 'react';
 
 export default function EventList() {
-  const events = mockPoints;
+  const [eventsArray, setEventsArray] = useState(mockPoints);
   const [activePointId, setActivePointId] = useState('');
 
   return (
     <ul className={lcs.tripEventsList}>
-      {events.map((point) => (
+      {eventsArray.map((point) => (
         activePointId === point.id
-          ? <PointEditForm key={point.id} point={point} onActivatePoint={setActivePointId} />
+          ? <PointEditForm key={point.id} point={point} onActivatePoint={setActivePointId} setEventsArray={setEventsArray}/>
           : <PointItem key={point.id} point={point} onActivatePoint={setActivePointId} />
       ))}
     </ul>

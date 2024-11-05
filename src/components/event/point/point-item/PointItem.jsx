@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import cn from 'classnames';
 import { eventTypes, DateFormatType } from '../../../../data';
 import { mockDestinations } from '../../../../mock/mockDestinations';
 import { mockOffers } from '../../../../mock/mockOffers';
@@ -13,7 +14,6 @@ export default function EventPoint({point, onActivatePoint}) {
   const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
   const destinationName = destination ? mockDestinations.filter((element) => destination === element.id)[0].name : null;
   const filteredOffers = mockOffers.find(offer => offer.type === type).offers.filter(offer => offers.includes(offer.id)) || [];
-  const isFavoriteClassName = isFavoriteState ? 'event__favorite-btn event__favorite-btn--active' : 'event__favorite-btn';
   const duration = humanizePointDuration(dateFrom, dateTo);
 
   function handleRollupClick() {
@@ -58,7 +58,7 @@ export default function EventPoint({point, onActivatePoint}) {
           </>
         ) : null}
         <button
-          className={isFavoriteClassName}
+          className={cn(lcs.eventFavoriteBtn, { [lcs.eventFavoriteBtnActive]: isFavoriteState })}
           onClick={handleFavoriteToggle}
           type="button"
         >

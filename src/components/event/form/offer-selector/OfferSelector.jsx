@@ -1,8 +1,14 @@
 import lcs from './OfferSelector.module.scss';
 
-export default function OfferSelector({offer, pointOffers}) {
-  console.log(pointOffers);
+export default function OfferSelector({offer, pointOffers, setPointState}) {
   const isChecked = pointOffers.includes(offer.id);
+
+  function handleCheckboxChange(evt) {
+    setPointState((point) => ({
+      ...point,
+      offers: evt.target.checked ? [...point.offers, offer.id] : point.offers.filter((id) => id !== offer.id)
+    }));
+  };
 
   return (
     <div className={lcs.eventOfferSelector}>
@@ -12,7 +18,7 @@ export default function OfferSelector({offer, pointOffers}) {
         type="checkbox"
         name={`event-offer-${offer.id}`}
         checked={isChecked}
-        onChange={() => {}}
+        onChange={handleCheckboxChange}
       />
       <label className={lcs.eventOfferLabel} htmlFor={`event-offer-${offer.id}`}>
         <span>{offer.title}</span>
