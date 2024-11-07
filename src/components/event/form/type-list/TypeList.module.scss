@@ -1,0 +1,90 @@
+.event__type-item:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.event__type-input:checked + .event__type-label {
+  color: #000000;
+  background-color: #ffd054;
+}
+
+.event__type-input:checked + .event__type-label::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 11px;
+  width: 8px;
+  height: 8px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.event__type-label {
+  position: relative;
+  display: block;
+  padding: 5px 10px 5px 62px;
+  font-size: 17px;
+  line-height: 21px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 3px);
+    left: 32px;
+    width: 17px;
+    height: 17px;
+    background-position: 0 0;
+    background-size: 17px 17px;
+    background-repeat: no-repeat;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
+
+  &:hover {
+    color: #ffd054;
+  }
+}
+
+.event__type-label--taxi::before {
+  background-image: url("../img/icons/taxi.png");
+}
+
+.event__type-label--bus::before {
+  background-image: url("../img/icons/bus.png");
+}
+
+.event__type-label--train::before {
+  background-image: url("../img/icons/train.png");
+}
+
+.event__type-label--ship::before {
+  background-image: url("../img/icons/ship.png");
+}
+
+.event__type-label--drive::before {
+  background-image: url("../img/icons/drive.png");
+}
+
+.event__type-label--flight::before {
+  background-image: url("../img/icons/flight.png");
+}
+
+.event__type-label--check-in::before {
+  background-image: url("../img/icons/check-in.png");
+}
+
+.event__type-label--sightseeing::before {
+  background-image: url("../img/icons/sightseeing.png");
+}
+
+.event__type-label--restaurant::before {
+  background-image: url("../img/icons/restaurant.png");
+}
