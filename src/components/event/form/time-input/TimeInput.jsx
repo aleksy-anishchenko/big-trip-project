@@ -1,17 +1,61 @@
 import lcs from './TimeInput.module.scss';
 import cn from 'classnames';
-import { humanizePointDate } from '../../../../utils';
+import { useState } from "react";
+import DateTimePicker from "flatpickr-react";
+import "flatpickr/dist/flatpickr.css";
+import { English } from "flatpickr/dist/l10n/default";
 
-export default function TimeInput({dateType, dateFrom, dateTo}) {
-  const dateFromValue = humanizePointDate(dateFrom, dateType.formatValue);
-  const dateToValue = humanizePointDate(dateTo, dateType.formatValue);
+export default function TimeInput({dateType, dateFrom, dateTo, setPointState}) {
+  const [stateDateFrom, setStateDateFrom] = useState(dateFrom);
+  const [stateDateTo, setStateDateTo] = useState(dateTo);
+
   return (
     <div className={lcs.eventFieldGroup}>
       <label className="visually-hidden" htmlFor="event-start-time">From</label>
-      <input className={cn(lcs.eventInput, lcs.eventInputTime)} id="event-start-time" type="text" name="event-start-time" value={dateFromValue} />
+      <DateTimePicker
+        className={cn(lcs.eventInput, lcs.eventInputTime)}
+        id="event-start-time"
+        name="event-start-time"
+        options={{
+          enableTime: true,
+          dateFormat: dateType.formatValue,
+          time_24hr: true,
+          maxDate: stateDateTo,
+          locale: English,
+        }}
+        value={stateDateFrom}
+        onChange={(selectedDates) => {
+          const isoFormattedDate = selectedDates[0].toISOString();
+          setStateDateFrom(isoFormattedDate);
+          setPointState((prevState) => ({
+            ...prevState,
+            dateFrom: isoFormattedDate,
+          }));
+        }}
+      />
       &mdash;
       <label className="visually-hidden" htmlFor="event-end-time">To</label>
-      <input className={cn(lcs.eventInput, lcs.eventInputTime)} id="event-end-time" type="text" name="event-end-time" value={dateToValue} />
+      <DateTimePicker
+        className={cn(lcs.eventInput, lcs.eventInputTime)}
+        id="event-end-time"
+        name="event-end-time"
+        options={{
+          enableTime: true,
+          dateFormat: dateType.formatValue,
+          time_24hr: true,
+          minDate: stateDateFrom,
+          locale: English,
+        }}
+        value={stateDateTo}
+        onChange={(selectedDates) => {
+          const isoFormattedDate = selectedDates[0].toISOString();
+          setStateDateTo(isoFormattedDate);
+          setPointState((prevState) => ({
+            ...prevState,
+            dateTo: isoFormattedDate,
+          }));
+        }}
+      />
     </div>
   )
 }

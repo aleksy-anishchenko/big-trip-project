@@ -41,7 +41,7 @@ export default function PointEditForm({point, onActivatePoint, setEventsArray}) 
 
           <DestinationSelector destination={destination} type={type} setPointState={setPointState} />
 
-          <TimeInput dateType={DateFormatType.DATE_TIME_FORM_POINTS} dateFrom={dateFrom} dateTo={dateTo} />
+          <TimeInput dateType={DateFormatType.DATE_TIME_FORM_POINTS} dateFrom={dateFrom} dateTo={dateTo} setPointState={setPointState}  />
 
           <PriceInput price={basePrice} setPointState={setPointState} />
 

@@ -39,7 +39,7 @@ const DateFormatType = {
   EVENT_DATE: { name: 'date', formatValue: 'MMM DD' },
   START_TIME: { name: 'startTime', formatValue: 'HH:mm' },
   END_TIME: { name: 'endTime', formatValue: 'HH:mm' },
-  DATE_TIME_FORM_POINTS: { name: 'dateTimeFormPoints', formatValue: 'YY/MM/DD HH:mm' },
+  DATE_TIME_FORM_POINTS: { name: 'dateTimeFormPoints', formatValue: 'd/m/y H:i' },
 };
 
 export { eventTypes, FilterType, SortingType, DateFormatType };
