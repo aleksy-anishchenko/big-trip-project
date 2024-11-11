@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import { DateFormatType } from '../../../../data';
-import { mockDestinations } from '../../../../mock/mockDestinations';
+import { useDestinations } from '../../../../hooks/useDestinations';
 import { mockOffers } from '../../../../mock/mockOffers';
 import TypeSelector from '../../../event/form/type-selector/TypeSelector';
 import DestinationSelector from '../../../event/form/destination-selector/DestinationSelector';
@@ -12,10 +12,10 @@ import stylesPoint from '../../point/Point.module.scss';
 import { useState } from 'react';
 
 export default function PointEditForm({point, onActivatePoint, setEventsArray}) {
+  const { getDestinationById, isDestination } = useDestinations();
   const [pointState, setPointState] = useState(point);
   const { id, type, destination, basePrice, dateFrom, dateTo, offers } = pointState;
-  const pointDestination = mockDestinations.find((element) => destination === element.id);
-  const isDestination = mockDestinations.some((element) => destination === element.id && element.description !== '');
+  const pointDestination = getDestinationById(destination);
   const matchingOffers = mockOffers.filter((offer) => offer.type === type)[0].offers;
 
   function handleRollupClick() {
@@ -55,7 +55,7 @@ export default function PointEditForm({point, onActivatePoint, setEventsArray}) 
             <span className="visually-hidden">Open event</span>
           </button>
         </header>
-        {(isDestination || matchingOffers.length > 0)
+        {(isDestination(destination) || matchingOffers.length > 0)
         ? <PointDetails pointOffers={offers} arrayOffers={matchingOffers} destinationContent={pointDestination} setPointState={setPointState} />
         : null}
       </form>

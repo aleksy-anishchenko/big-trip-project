@@ -1,16 +1,16 @@
 import cn from 'classnames';
-import { mockDestinations } from '../../../../mock/mockDestinations';
+import { useDestinations } from '../../../../hooks/useDestinations';
 import lcs from './DestinationSelector.module.scss';
 import { useState } from 'react';
 
-
-export default function DestinationSelector({destination, type, setPointState}) {
+export default function DestinationSelector({ destination, type, setPointState }) {
+  const { destinations, getDestinationById } = useDestinations();
   const [inputValue, setInputValue] = useState(
-    destination ? mockDestinations.find((element) => destination === element.id)?.name || '' : ''
+    destination ? getDestinationById(destination)?.name : ''
   );
 
   function handleDestinationСhange(evt) {
-    const newDestination = mockDestinations.find((element) => element.name === evt.target.value);
+    const newDestination = destinations.find((element) => element.name === evt.target.value);
     setPointState((point) => ({ ...point, destination: newDestination.id }));
     setInputValue(evt.target.value);
   }
@@ -26,7 +26,7 @@ export default function DestinationSelector({destination, type, setPointState}) 
         onChange={handleDestinationСhange}
         required
       >
-        {mockDestinations.map((element) => (
+        {destinations.map((element) => (
           <option key={element.id} value={element.name}>{element.name}</option>
         ))}
       </select>

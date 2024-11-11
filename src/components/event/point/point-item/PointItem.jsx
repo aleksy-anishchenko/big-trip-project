@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import { eventTypes, DateFormatType } from '../../../../data';
-import { mockDestinations } from '../../../../mock/mockDestinations';
-import { mockOffers } from '../../../../mock/mockOffers';
+import { useDestinations } from '../../../../hooks/useDestinations';
+import { useOffers } from '../../../../hooks/useOffers';
 import { humanizePointDuration } from '../../../../utils';
 import DateTime from '../../date-time/DateTime';
 import OfferList from '../../offer-list/OfferList';
@@ -11,9 +11,11 @@ import stylesPoint from '../../point/Point.module.scss';
 
 export default function EventPoint({point, onActivatePoint}) {
   const { id, type, destination, basePrice, dateFrom, dateTo, offers, isFavorite } = point;
+  const { getFilteredOffers } = useOffers();
+  const { getDestinationName } = useDestinations();
   const [isFavoriteState, setIsFavoriteState] = useState(isFavorite);
-  const destinationName = destination ? mockDestinations.filter((element) => destination === element.id)[0].name : null;
-  const filteredOffers = mockOffers.find(offer => offer.type === type).offers.filter(offer => offers.includes(offer.id)) || [];
+  const destinationName = getDestinationName(destination);
+  const filteredOffers = getFilteredOffers(type, offers);
   const duration = humanizePointDuration(dateFrom, dateTo);
 
   function handleRollupClick() {

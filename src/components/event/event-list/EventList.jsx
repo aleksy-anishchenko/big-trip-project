@@ -1,11 +1,12 @@
 import lcs from './EventList.module.scss';
-import { mockPoints } from '../../../mock/mockPoints';
+import { usePoints } from '../../../Hooks/usePoints';
 import PointItem from '../point/point-item/PointItem';
 import PointEditForm from '../point/point-edit-form/PointEditForm';
 import { useState } from 'react';
 
 export default function EventList() {
-  const [eventsArray, setEventsArray] = useState(mockPoints);
+  const { points } = usePoints();
+  const [eventsArray, setEventsArray] = useState(points);
   const [activePointId, setActivePointId] = useState('');
 
   return (
