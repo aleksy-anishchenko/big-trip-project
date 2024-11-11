@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import { DateFormatType } from '../../../../data';
 import { useDestinations } from '../../../../hooks/useDestinations';
-import { mockOffers } from '../../../../mock/mockOffers';
+import { useOffers } from '../../../../hooks/useOffers';
 import TypeSelector from '../../../event/form/type-selector/TypeSelector';
 import DestinationSelector from '../../../event/form/destination-selector/DestinationSelector';
 import TimeInput from '../../form/time-input/TimeInput';
@@ -13,10 +13,11 @@ import { useState } from 'react';
 
 export default function PointEditForm({point, onActivatePoint, setEventsArray}) {
   const { getDestinationById, isDestination } = useDestinations();
+  const { getMatchingOffers } = useOffers();
   const [pointState, setPointState] = useState(point);
   const { id, type, destination, basePrice, dateFrom, dateTo, offers } = pointState;
   const pointDestination = getDestinationById(destination);
-  const matchingOffers = mockOffers.filter((offer) => offer.type === type)[0].offers;
+  const matchingOffers = getMatchingOffers(type);
 
   function handleRollupClick() {
     onActivatePoint('');

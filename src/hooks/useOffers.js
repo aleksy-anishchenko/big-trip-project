@@ -8,5 +8,9 @@ export function useOffers() {
     return offers.find(offer => offer.type === type).offers.filter(offer => pointOffers.includes(offer.id)) || [];
   }
 
-  return { offers, getFilteredOffers }
+  const getMatchingOffers = (type) => {
+    return offers.filter((offer) => offer.type === type)[0].offers;
+  }
+
+  return { offers, getFilteredOffers, getMatchingOffers }
 }
