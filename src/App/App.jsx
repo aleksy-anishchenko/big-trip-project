@@ -1,10 +1,16 @@
 import SortList from '../components/sort/sort-list/SortList';
 import FilterList from '../components/filter/filter-list/FilterList'
 import EventList from '../components/event/event-list/EventList';
+import NewPointButton from '../components/event/new-point-button/NewPointButton'
+import { useState } from 'react';
+
 import lcs from './App.module.scss';
 import nc from 'classnames'
 
 export default function App() {
+  const [activePointId, setActivePointId] = useState('');
+  const [isNewPoint, setIsNewPoint] = useState(false);
+
   return (
     <>
       <header className={lcs.pageHeader}>
@@ -23,7 +29,7 @@ export default function App() {
             <div className={nc(lcs.tripMainTripControls, lcs.tripControls)}>
               <FilterList />
             </div>
-            <button className={`${lcs.tripMainEventAddBtn} btn btn--big btn--yellow`} type="button">New event</button>
+            {isNewPoint ? <NewPointButton isDisabled={true} setIsNewPoint={setIsNewPoint} /> : <NewPointButton isDisabled={false} setIsNewPoint={setIsNewPoint} setActivePointId={setActivePointId} />}
           </div>
         </div>
       </header>
@@ -32,7 +38,7 @@ export default function App() {
           <section className={lcs.tripEvents}>
           <h2 className="visually-hidden">Trip events</h2>
             <SortList />
-            <EventList />
+            <EventList activePointId={activePointId} setActivePointId={setActivePointId} isNewPoint={isNewPoint} setIsNewPoint={setIsNewPoint}/>
           </section>
         </div>
       </main>

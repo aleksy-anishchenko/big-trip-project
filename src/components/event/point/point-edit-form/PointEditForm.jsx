@@ -11,7 +11,7 @@ import lcs from './PointEditForm.module.scss';
 import stylesPoint from '../../point/Point.module.scss';
 import { useState } from 'react';
 
-export default function PointEditForm({point, onActivatePoint, setEventsArray}) {
+export default function PointEditForm({point, onActivatePoint, setEventsArray, isNewPoint, setIsNewPoint}) {
   const { getDestinationById, isDestination } = useDestinations();
   const { getMatchingOffers } = useOffers();
   const [pointState, setPointState] = useState(point);
@@ -27,10 +27,23 @@ export default function PointEditForm({point, onActivatePoint, setEventsArray}) 
     setEventsArray((eventsArray) => eventsArray.filter((event) => event.id !== id));
   }
 
+  function handleCancelClick() {
+    setIsNewPoint(false);
+  }
+
   function handleFormSubmit(evt) {
     evt.preventDefault();
     setEventsArray((eventsArray) => eventsArray.map((event) => event.id === id ? pointState : event));
     onActivatePoint('');
+  }
+
+  function handleNewFormSubmit(evt) {
+    evt.preventDefault();
+    setEventsArray((eventsArray) => {
+      const newEventsArray = [pointState, ...eventsArray];
+      return newEventsArray;
+    })
+    setIsNewPoint(false);
   }
 
   return (
@@ -46,15 +59,23 @@ export default function PointEditForm({point, onActivatePoint, setEventsArray}) 
 
           <PriceInput price={basePrice} setPointState={setPointState} />
 
-          <button className={cn(lcs.eventSaveBtn, 'btn', 'btn--blue')} type="submit" onClick={handleFormSubmit}>Save</button>
-          <button className={lcs.eventResetBtn} type="reset" onClick={handleDeleteClick}>Delete</button>
-          <button
-            className={stylesPoint.eventRollupBtn}
-            type="button"
-            onClick={handleRollupClick}
-          >
-            <span className="visually-hidden">Open event</span>
-          </button>
+          {isNewPoint ?
+            <>
+              <button className={cn(lcs.eventSaveBtn, 'btn', 'btn--blue')} type="submit" onClick={handleNewFormSubmit}>Save</button>
+              <button className={lcs.eventResetBtn} type="reset" onClick={handleCancelClick}>Cancel</button>
+            </> :
+            <>
+              <button className={cn(lcs.eventSaveBtn, 'btn', 'btn--blue')} type="submit" onClick={handleFormSubmit}>Save</button>
+              <button className={lcs.eventResetBtn} type="reset" onClick={handleDeleteClick}>Delete</button>
+              <button
+                className={stylesPoint.eventRollupBtn}
+                type="button"
+                onClick={handleRollupClick}
+              >
+                <span className="visually-hidden">Open event</span>
+              </button>
+            </>
+          }
         </header>
         {(isDestination(destination) || matchingOffers.length > 0)
         ? <PointDetails pointOffers={offers} arrayOffers={matchingOffers} destinationContent={pointDestination} setPointState={setPointState} />

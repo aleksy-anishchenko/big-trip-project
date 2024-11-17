@@ -42,4 +42,15 @@ const DateFormatType = {
   DATE_TIME_FORM_POINTS: { name: 'dateTimeFormPoints', formatValue: 'd/m/y H:i' },
 };
 
-export { eventTypes, FilterType, SortingType, DateFormatType };
+const EMPTY_POINT = {
+  id: '1qq111q1-q111-1q11-qq1q-111q111q1q11',
+  type: eventTypes['taxi'].name,
+  destination: 'bc556c30-1dc2-4687-9136-6dddb051a1a8',
+  dateFrom: '',
+  dateTo: '',
+  basePrice: null,
+  offers: [],
+  isFavorite: false,
+};
+
+export { eventTypes, FilterType, SortingType, DateFormatType, EMPTY_POINT };

@@ -9,7 +9,7 @@ import OfferList from '../../offer-list/OfferList';
 import lcs from './PointItem.module.scss';
 import stylesPoint from '../../point/Point.module.scss';
 
-export default function EventPoint({point, onActivatePoint}) {
+export default function EventPoint({point, onActivatePoint, setIsNewPoint}) {
   const { id, type, destination, basePrice, dateFrom, dateTo, offers, isFavorite } = point;
   const { getFilteredOffers } = useOffers();
   const { getDestinationName } = useDestinations();
@@ -19,6 +19,7 @@ export default function EventPoint({point, onActivatePoint}) {
   const duration = humanizePointDuration(dateFrom, dateTo);
 
   function handleRollupClick() {
+    setIsNewPoint(false);
     onActivatePoint(id);
   }
 
