@@ -1,6 +1,6 @@
 import lcs from './EventList.module.scss';
 import { EMPTY_POINT } from '../../../data'
-import { usePoints } from '../../../Hooks/usePoints';
+import { usePoints } from '../../../hooks/usePoints';
 import PointItem from '../point/point-item/PointItem';
 import PointEditForm from '../point/point-edit-form/PointEditForm';
 import { useState } from 'react';

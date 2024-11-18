@@ -7,7 +7,7 @@ import { humanizePointDuration } from '../../../../utils';
 import DateTime from '../../date-time/DateTime';
 import OfferList from '../../offer-list/OfferList';
 import lcs from './PointItem.module.scss';
-import stylesPoint from '../../point/Point.module.scss';
+import stylesPoint from '../Point.module.scss';
 
 export default function EventPoint({point, onActivatePoint, setIsNewPoint}) {
   const { id, type, destination, basePrice, dateFrom, dateTo, offers, isFavorite } = point;

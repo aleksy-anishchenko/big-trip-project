@@ -1,15 +1,15 @@
 import cn from 'classnames';
-import { DateFormatType } from '../../../../data';
-import { useDestinations } from '../../../../hooks/useDestinations';
-import { useOffers } from '../../../../hooks/useOffers';
+import {DateFormatType} from '../../../../data';
+import {useDestinations} from '../../../../hooks/useDestinations';
+import {useOffers} from '../../../../hooks/useOffers';
 import TypeSelector from '../../../event/form/type-selector/TypeSelector';
 import DestinationSelector from '../../../event/form/destination-selector/DestinationSelector';
 import TimeInput from '../../form/time-input/TimeInput';
 import PriceInput from '../../form/price-input/PriceInput';
 import PointDetails from '../../form/point-details/PointDetails';
 import lcs from './PointEditForm.module.scss';
-import stylesPoint from '../../point/Point.module.scss';
-import { useState } from 'react';
+import stylesPoint from '../Point.module.scss';
+import {useState} from 'react';
 
 export default function PointEditForm({point, onActivatePoint, setEventsArray, isNewPoint, setIsNewPoint}) {
   const { getDestinationById, isDestination } = useDestinations();
@@ -40,8 +40,7 @@ export default function PointEditForm({point, onActivatePoint, setEventsArray, i
   function handleNewFormSubmit(evt) {
     evt.preventDefault();
     setEventsArray((eventsArray) => {
-      const newEventsArray = [pointState, ...eventsArray];
-      return newEventsArray;
+      return [pointState, ...eventsArray];
     })
     setIsNewPoint(false);
   }

@@ -1,11 +1,11 @@
 import SortList from '../components/sort/sort-list/SortList';
-import FilterList from '../components/filter/filter-list/FilterList'
+import FilterList from '../components/filter/filter-list/FilterList';
 import EventList from '../components/event/event-list/EventList';
-import NewPointButton from '../components/event/new-point-button/NewPointButton'
+import NewPointButton from '../components/event/new-point-button/NewPointButton';
 import { useState } from 'react';
 
 import lcs from './App.module.scss';
-import nc from 'classnames'
+import nc from 'classnames';
 
 export default function App() {
   const [activePointId, setActivePointId] = useState('');

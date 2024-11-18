@@ -9,7 +9,7 @@ export default function DestinationSelector({ destination, type, setPointState }
     destination ? getDestinationById(destination)?.name : ''
   );
 
-  function handleDestinationСhange(evt) {
+  function handleDestinationChange(evt) {
     const newDestination = destinations.find((element) => element.name === evt.target.value);
     setPointState((point) => ({ ...point, destination: newDestination.id }));
     setInputValue(evt.target.value);
@@ -23,7 +23,7 @@ export default function DestinationSelector({ destination, type, setPointState }
         id="event-destination"
         name="event-destination"
         value={inputValue}
-        onChange={handleDestinationСhange}
+        onChange={handleDestinationChange}
         required
       >
         {destinations.map((element) => (

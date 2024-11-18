@@ -6,6 +6,11 @@ export default defineConfig({
   base: './',
   plugins: [react()],
   css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ["legacy-js-api"],
+      },
+    },
     modules: {
       localsConvention: 'camelCaseOnly' // Преобразует классы в camelCase
     }
