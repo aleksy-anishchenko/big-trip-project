@@ -1,0 +1,12 @@
+.trip-main__event-add-btn {
+  min-width: 170px;
+  margin-left: auto;
+
+  &--hidden {
+    display: none;
+  }
+
+  &::before {
+    content: "\002B\000A0";
+  }
+}

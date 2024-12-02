@@ -39,7 +39,17 @@ const DateFormatType = {
   EVENT_DATE: { name: 'date', formatValue: 'MMM DD' },
   START_TIME: { name: 'startTime', formatValue: 'HH:mm' },
   END_TIME: { name: 'endTime', formatValue: 'HH:mm' },
-  DATE_TIME_FORM_POINTS: { name: 'dateTimeFormPoints', formatValue: 'YY/MM/DD HH:mm' },
+  DATE_TIME_FORM_POINTS: { name: 'dateTimeFormPoints', formatValue: 'd/m/y H:i' },
 };
 
-export { eventTypes, FilterType, SortingType, DateFormatType };
+const EMPTY_POINT = {
+  type: eventTypes['taxi'].name,
+  destination: 'bc556c30-1dc2-4687-9136-6dddb051a1a8',
+  dateFrom: '',
+  dateTo: '',
+  basePrice: null,
+  offers: [],
+  isFavorite: false,
+};
+
+export { eventTypes, FilterType, SortingType, DateFormatType, EMPTY_POINT };

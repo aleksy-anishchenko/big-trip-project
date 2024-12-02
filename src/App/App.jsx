@@ -1,15 +1,29 @@
 import SortList from '../components/sort/sort-list/SortList';
-import FilterList from '../components/filter/filter-list/FilterList'
+import FilterList from '../components/filter/filter-list/FilterList';
 import EventList from '../components/event/event-list/EventList';
+import NewPointButton from '../components/event/new-point-button/NewPointButton';
+import {useState} from 'react';
+
 import lcs from './App.module.scss';
-import nc from 'classnames'
+import nc from 'classnames';
 
 export default function App() {
+  const [activePointId, setActivePointId] = useState('');
+  const [isNewPointDisabled, setIsNewPointDisabled] = useState(false);
+  
+  function handleNewPointButtonClick() {
+    if (isNewPointDisabled) {
+      return;
+    }
+    setIsNewPointDisabled(true);
+    setActivePointId('');
+  }
+
   return (
     <>
       <header className={lcs.pageHeader}>
         <div className={nc(lcs.pageBodyContainer, lcs.pageHeaderContainer)}>
-          <img className={lcs.pageHeaderLogo} src="img/logo.png" width="42" height="42" alt="Trip logo" />
+          <img className={lcs.pageHeaderLogo} src="img/logo.png" width="42" height="42" alt="Trip logo"/>
           <div className={lcs.tripMain}>
             <section className={nc(lcs.tripMainTripInfo, lcs.tripInfo)}>
               <div className={lcs.tripInfoMain}>
@@ -21,18 +35,26 @@ export default function App() {
               </p>
             </section>
             <div className={nc(lcs.tripMainTripControls, lcs.tripControls)}>
-              <FilterList />
+              <FilterList/>
             </div>
-            <button className={`${lcs.tripMainEventAddBtn} btn btn--big btn--yellow`} type="button">New event</button>
+            <NewPointButton
+              isDisabled={isNewPointDisabled}
+              onClick={handleNewPointButtonClick}
+            />
           </div>
         </div>
       </header>
       <main className={nc(lcs.pageBodyPageMain, lcs.pageMain)}>
         <div className={lcs.pageBodyContainer}>
           <section className={lcs.tripEvents}>
-          <h2 className="visually-hidden">Trip events</h2>
-            <SortList />
-            <EventList />
+            <h2 className="visually-hidden">Trip events</h2>
+            <SortList/>
+            <EventList
+              activePointId={activePointId}
+              setActivePointId={setActivePointId}
+              isNewPointOpen={isNewPointDisabled}
+              setIsNewPointOpen={setIsNewPointDisabled}
+            />
           </section>
         </div>
       </main>

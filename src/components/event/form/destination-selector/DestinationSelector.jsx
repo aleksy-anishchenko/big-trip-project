@@ -1,39 +1,35 @@
 import cn from 'classnames';
-import { mockDestinations } from '../../../../mock/mockDestinations';
+import { useDestinations } from '../../../../hooks/useDestinations';
 import lcs from './DestinationSelector.module.scss';
 import { useState } from 'react';
 
-
-export default function DestinationSelector({destination, type, setPointState}) {
+export default function DestinationSelector({ destination, type, setPointState }) {
+  const { destinations, getDestinationById } = useDestinations();
   const [inputValue, setInputValue] = useState(
-    destination ? mockDestinations.find((element) => destination === element.id)?.name || '' : ''
+    destination ? getDestinationById(destination)?.name : ''
   );
 
-  function handleDestinationСhange(evt) {
-    const newDestination = mockDestinations.find((element) => element.name === evt.target.value);
-    if (newDestination) {
-      setPointState((point) => ({ ...point, destination: newDestination.id }));
-    }
+  function handleDestinationChange(evt) {
+    const newDestination = destinations.find((element) => element.name === evt.target.value);
+    setPointState((point) => ({ ...point, destination: newDestination.id }));
     setInputValue(evt.target.value);
   }
 
   return (
     <div className={cn(lcs.eventFieldGroup, lcs.eventFieldGroupDestination)}>
       <label className={lcs.eventLabel} htmlFor="event-destination">{type}</label>
-      <input
+      <select
         className={cn(lcs.eventInput, lcs.eventInputDestination)}
         id="event-destination"
-        type="text"
         name="event-destination"
         value={inputValue}
-        list="destination-list"
-        onChange={handleDestinationСhange}
-      />
-      <datalist id="destination-list">
-        {mockDestinations.map((element) => (
-          <option key={element.id} value={element.name}></option>
+        onChange={handleDestinationChange}
+        required
+      >
+        {destinations.map((element) => (
+          <option key={element.id} value={element.name}>{element.name}</option>
         ))}
-      </datalist>
+      </select>
     </div>
   )
 }
