@@ -1,11 +1,10 @@
-import lcs from './TimeInput.module.scss';
+import lcs from './DateTimeInput.module.scss';
 import cn from 'classnames';
-import { useState } from "react";
+import {useState} from "react";
 import DateTimePicker from "flatpickr-react";
 import "flatpickr/dist/flatpickr.css";
-import { English } from "flatpickr/dist/l10n/default";
 
-export default function TimeInput({dateType, dateFrom, dateTo, setPointState}) {
+export default function DateTimeInput({dateType, dateFrom, dateTo, setPointState}) {
   const [stateDateFrom, setStateDateFrom] = useState(dateFrom);
   const [stateDateTo, setStateDateTo] = useState(dateTo);
 
@@ -21,7 +20,7 @@ export default function TimeInput({dateType, dateFrom, dateTo, setPointState}) {
           dateFormat: dateType.formatValue,
           time_24hr: true,
           maxDate: stateDateTo,
-          locale: English,
+          locale: 'en',
         }}
         value={stateDateFrom}
         onChange={(selectedDates) => {
@@ -44,7 +43,7 @@ export default function TimeInput({dateType, dateFrom, dateTo, setPointState}) {
           dateFormat: dateType.formatValue,
           time_24hr: true,
           minDate: stateDateFrom,
-          locale: English,
+          locale: 'en',
         }}
         value={stateDateTo}
         onChange={(selectedDates) => {
