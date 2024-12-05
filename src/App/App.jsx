@@ -3,14 +3,16 @@ import FilterList from '../components/filter/filter-list/FilterList';
 import EventList from '../components/event/event-list/EventList';
 import NewPointButton from '../components/event/new-point-button/NewPointButton';
 import {useState} from 'react';
+import {usePoints} from '../hooks/usePoints.js';
 
 import lcs from './App.module.scss';
 import nc from 'classnames';
 
 export default function App() {
+  const {points, setPoints} = usePoints();
   const [activePointId, setActivePointId] = useState('');
   const [isNewPointDisabled, setIsNewPointDisabled] = useState(false);
-  
+
   function handleNewPointButtonClick() {
     if (isNewPointDisabled) {
       return;
@@ -35,7 +37,7 @@ export default function App() {
               </p>
             </section>
             <div className={nc(lcs.tripMainTripControls, lcs.tripControls)}>
-              <FilterList/>
+              <FilterList points={points} setPoints={setPoints}/>
             </div>
             <NewPointButton
               isDisabled={isNewPointDisabled}
@@ -54,6 +56,8 @@ export default function App() {
               setActivePointId={setActivePointId}
               isNewPointOpen={isNewPointDisabled}
               setIsNewPointOpen={setIsNewPointDisabled}
+              points={points}
+              setPoints={setPoints}
             />
           </section>
         </div>

@@ -1,3 +1,4 @@
+import {FilterType} from './data.js';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 
@@ -59,4 +60,27 @@ function capitalizeFirstLetter(string) {
   return string.replace(/^\w/, c => c.toUpperCase());
 }
 
-export { getRandomNumber, getRandomArrayElement, humanizePointDate, humanizePointDuration, adaptPointToClient, capitalizeFirstLetter };
+const filterPoints = (name, points) => {
+  const filterName = name.toUpperCase();
+
+  switch (filterName) {
+    case FilterType.EVERYTHING:
+      return points;
+    case FilterType.FUTURE:
+      return points.filter((item) => dayjs().isBefore(dayjs(item.dateFrom)));
+    case FilterType.PRESENT:
+      return points.filter((item) => dayjs().isBetween(dayjs(item.dateTo), dayjs(item.dateFrom)));
+    case FilterType.PAST:
+      return points.filter((item) => dayjs().isAfter(dayjs(item.dateTo)));
+  }
+};
+
+export {
+  getRandomNumber,
+  getRandomArrayElement,
+  humanizePointDate,
+  humanizePointDuration,
+  adaptPointToClient,
+  capitalizeFirstLetter,
+  filterPoints,
+};
