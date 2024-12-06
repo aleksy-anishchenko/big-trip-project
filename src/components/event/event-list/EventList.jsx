@@ -1,11 +1,16 @@
 import lcs from './EventList.module.scss';
-import {EMPTY_POINT} from '../../../data'
-import {usePoints} from '../../../hooks/usePoints';
+import {EMPTY_POINT} from '../../../data';
 import PointItem from '../point/point-item/PointItem';
 import PointEditForm from '../point/point-edit-form/PointEditForm';
 
-export default function EventList({activePointId, setActivePointId, isNewPointOpen, setIsNewPointOpen}) {
-  const {points, setPoints} = usePoints();
+export default function EventList({
+                                    activePointId,
+                                    setActivePointId,
+                                    isNewPointOpen,
+                                    setIsNewPointOpen,
+                                    points,
+                                    setPoints
+                                  }) {
 
   return (
     <ul className={lcs.tripEventsList}>

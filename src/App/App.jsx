@@ -2,15 +2,18 @@ import SortList from '../components/sort/sort-list/SortList';
 import FilterList from '../components/filter/filter-list/FilterList';
 import EventList from '../components/event/event-list/EventList';
 import NewPointButton from '../components/event/new-point-button/NewPointButton';
+import TripInfo from '../components/trip/trip-info/TripInfo.jsx';
 import {useState} from 'react';
+import {usePoints} from '../hooks/usePoints.js';
 
 import lcs from './App.module.scss';
 import nc from 'classnames';
 
 export default function App() {
+  const {points, setPoints} = usePoints();
   const [activePointId, setActivePointId] = useState('');
   const [isNewPointDisabled, setIsNewPointDisabled] = useState(false);
-  
+
   function handleNewPointButtonClick() {
     if (isNewPointDisabled) {
       return;
@@ -25,17 +28,9 @@ export default function App() {
         <div className={nc(lcs.pageBodyContainer, lcs.pageHeaderContainer)}>
           <img className={lcs.pageHeaderLogo} src="img/logo.png" width="42" height="42" alt="Trip logo"/>
           <div className={lcs.tripMain}>
-            <section className={nc(lcs.tripMainTripInfo, lcs.tripInfo)}>
-              <div className={lcs.tripInfoMain}>
-                <h1 className={lcs.tripInfoTitle}>Amsterdam &mdash; Chamonix &mdash; Geneva</h1>
-                <p className={lcs.tripInfoDates}>18&nbsp;&mdash;&nbsp;20 Mar</p>
-              </div>
-              <p className={lcs.tripInfoCost}>
-                Total: &euro;&nbsp;<span className={lcs.tripInfoCostValue}>1230</span>
-              </p>
-            </section>
+            <TripInfo points={points}/>
             <div className={nc(lcs.tripMainTripControls, lcs.tripControls)}>
-              <FilterList/>
+              <FilterList points={points} setPoints={setPoints}/>
             </div>
             <NewPointButton
               isDisabled={isNewPointDisabled}
@@ -54,6 +49,8 @@ export default function App() {
               setActivePointId={setActivePointId}
               isNewPointOpen={isNewPointDisabled}
               setIsNewPointOpen={setIsNewPointDisabled}
+              points={points}
+              setPoints={setPoints}
             />
           </section>
         </div>
