@@ -1,6 +1,10 @@
 import lcs from './FilterItem.module.scss';
+import {useContext} from 'react';
+import AppContext from '../../../context.js';
 
-export default function FilterItem({value, onChange, selectedFilter}) {
+export default function FilterItem({value, onChange}) {
+  const {filter} = useContext(AppContext);
+  const {selectedFilter} = filter;
   const filterValue = `filter-${value.toLowerCase()}`
 
   function handleFilterChange(evt) {

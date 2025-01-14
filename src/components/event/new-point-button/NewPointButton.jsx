@@ -1,6 +1,10 @@
 import lcs from './NewPointButton.module.scss';
+import {useContext} from 'react';
+import AppContext from '../../../context.js';
 
-export default function NewPointButton({isDisabled, onClick}) {
+export default function NewPointButton({onClick}) {
+  const {newPointDisabled} = useContext(AppContext);
+  const {isNewPointDisabled} = newPointDisabled;
 
   function handleButtonClick() {
     onClick && onClick();
@@ -11,7 +15,7 @@ export default function NewPointButton({isDisabled, onClick}) {
       className={`${lcs.tripMainEventAddBtn} btn btn--big btn--yellow`}
       onClick={handleButtonClick}
       type="button"
-      disabled={isDisabled}
+      disabled={isNewPointDisabled}
     >
       New event
     </button>

@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
+import AppContext from '../../../../context.js';
 import cn from 'classnames';
 import {eventTypes, DateFormatType} from '../../../../data';
 import {useDestinations} from '../../../../hooks/useDestinations';
@@ -9,7 +10,11 @@ import OfferList from '../../offer-list/OfferList';
 import lcs from './PointItem.module.scss';
 import stylesPoint from '../Point.module.scss';
 
-export default function EventPoint({point, onActivatePoint, setIsNewPointOpen}) {
+export default function EventPoint({point}) {
+  const {newPointDisabled, activePoint} = useContext(AppContext);
+  const {setIsNewPointDisabled} = newPointDisabled;
+  const {setActivePointId} = activePoint;
+
   const {id, type, destination, basePrice, dateFrom, dateTo, offers, isFavorite} = point;
   const {getFilteredOffers} = useOffers();
   const {getDestinationName} = useDestinations();
@@ -19,8 +24,8 @@ export default function EventPoint({point, onActivatePoint, setIsNewPointOpen}) 
   const duration = humanizePointDuration(dateFrom, dateTo);
 
   function handleRollupClick() {
-    setIsNewPointOpen(false);
-    onActivatePoint(id);
+    setIsNewPointDisabled(false);
+    setActivePointId(id);
   }
 
   function handleFavoriteToggle() {

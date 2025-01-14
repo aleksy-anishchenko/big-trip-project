@@ -3,8 +3,13 @@ import {humanizePointDate} from '../../../utils.js';
 import {DateFormatType} from '../../../data.js';
 import nc from 'classnames';
 import lcs from './TripInfo.module.scss';
+import {useContext} from 'react';
+import AppContext from '../../../context.js';
 
-export default function TripInfo({points}) {
+export default function TripInfo() {
+  const {pointArray} = useContext(AppContext);
+  const {points} = pointArray;
+
   const {getDestinationName} = useDestinations();
 
   const tripDestinationNames = points.map((item) => {
