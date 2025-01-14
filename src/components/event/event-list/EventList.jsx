@@ -1,21 +1,24 @@
 import lcs from './EventList.module.scss';
-import {EMPTY_POINT} from '../../../data'
-import {usePoints} from '../../../hooks/usePoints';
+import {EMPTY_POINT} from '../../../data';
 import PointItem from '../point/point-item/PointItem';
 import PointEditForm from '../point/point-edit-form/PointEditForm';
 
-export default function EventList({activePointId, setActivePointId, isNewPointOpen, setIsNewPointOpen}) {
-  const {points, setPoints} = usePoints();
+import AppContext from '../../../context.js';
+import {useContext} from 'react';
+
+export default function EventList() {
+  const {pointArray, newPointDisabled, activePoint} = useContext(AppContext);
+  const {points} = pointArray;
+  const {isNewPointDisabled} = newPointDisabled;
+  const {activePointId} = activePoint;
 
   return (
     <ul className={lcs.tripEventsList}>
-      {isNewPointOpen && <PointEditForm point={EMPTY_POINT} onActivatePoint={setActivePointId} setPoints={setPoints}
-                                        isNewPointOpen={isNewPointOpen} setIsNewPointOpen={setIsNewPointOpen}/>}
+      {isNewPointDisabled && <PointEditForm point={EMPTY_POINT}/>}
       {points.map((point) => (
-        !isNewPointOpen && activePointId === point.id
-          ? <PointEditForm key={point.id} point={point} onActivatePoint={setActivePointId} setPoints={setPoints}/>
-          : <PointItem key={point.id} point={point} onActivatePoint={setActivePointId}
-                       setIsNewPointOpen={setIsNewPointOpen}/>
+        !isNewPointDisabled && activePointId === point.id
+          ? <PointEditForm key={point.id} point={point}/>
+          : <PointItem key={point.id} point={point}/>
       ))}
     </ul>
   )

@@ -9,15 +9,15 @@ import IconTaxi from './assets/icons/taxi.png';
 import IconTrain from './assets/icons/train.png';
 
 const eventTypes = {
-  'bus': { name: 'bus', icon: IconBus },
-  'check-in': { name: 'check-in', icon: IconCheckIn },
-  'drive': { name: 'drive', icon: IconDrive },
-  'flight': { name: 'flight', icon: IconFlight },
-  'restaurant': { name: 'restaurant', icon: IconRestaurant },
-  'ship': { name: 'ship', icon: IconShip },
-  'sightseeing': { name: 'sightseeing', icon: IconSightseeing },
-  'taxi': { name: 'taxi', icon: IconTaxi },
-  'train': { name: 'train', icon: IconTrain },
+  'bus': {name: 'bus', icon: IconBus},
+  'check-in': {name: 'check-in', icon: IconCheckIn},
+  'drive': {name: 'drive', icon: IconDrive},
+  'flight': {name: 'flight', icon: IconFlight},
+  'restaurant': {name: 'restaurant', icon: IconRestaurant},
+  'ship': {name: 'ship', icon: IconShip},
+  'sightseeing': {name: 'sightseeing', icon: IconSightseeing},
+  'taxi': {name: 'taxi', icon: IconTaxi},
+  'train': {name: 'train', icon: IconTrain},
 };
 
 const FilterType = {
@@ -27,19 +27,26 @@ const FilterType = {
   PAST: 'PAST',
 };
 
+const EmptyListMessage = {
+  EVERYTHING: 'Click New Event to create your first point',
+  PAST: 'There are no past events now',
+  PRESENT: 'There are no present events now',
+  FUTURE: 'There are no future events now',
+};
+
 const SortingType = {
-  DAY: { name: 'day', isDisabled: false },
-  EVENT: { name: 'event', isDisabled: true },
-  TIME: { name: 'time', isDisabled: false },
-  PRICE: { name: 'price', isDisabled: false },
-  OFFER: { name: 'offer', isDisabled: true },
+  DAY: {name: 'day', isDisabled: false},
+  EVENT: {name: 'event', isDisabled: true},
+  TIME: {name: 'time', isDisabled: false},
+  PRICE: {name: 'price', isDisabled: false},
+  OFFER: {name: 'offer', isDisabled: true},
 };
 
 const DateFormatType = {
-  EVENT_DATE: { name: 'date', formatValue: 'MMM DD' },
-  START_TIME: { name: 'startTime', formatValue: 'HH:mm' },
-  END_TIME: { name: 'endTime', formatValue: 'HH:mm' },
-  DATE_TIME_FORM_POINTS: { name: 'dateTimeFormPoints', formatValue: 'd/m/y H:i' },
+  EVENT_DATE: {name: 'date', formatValue: 'MMM DD'},
+  START_TIME: {name: 'startTime', formatValue: 'HH:mm'},
+  END_TIME: {name: 'endTime', formatValue: 'HH:mm'},
+  DATE_TIME_FORM_POINTS: {name: 'dateTimeFormPoints', formatValue: 'd/m/y H:i'},
 };
 
 const EMPTY_POINT = {
@@ -52,4 +59,4 @@ const EMPTY_POINT = {
   isFavorite: false,
 };
 
-export { eventTypes, FilterType, SortingType, DateFormatType, EMPTY_POINT };
+export {eventTypes, FilterType, EmptyListMessage, SortingType, DateFormatType, EMPTY_POINT};

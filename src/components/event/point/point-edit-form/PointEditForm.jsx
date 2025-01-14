@@ -1,3 +1,5 @@
+import {useState, useContext} from 'react';
+import AppContext from '../../../../context.js';
 import cn from 'classnames';
 import {DateFormatType} from '../../../../data';
 import {useDestinations} from '../../../../hooks/useDestinations';
@@ -9,24 +11,28 @@ import PriceInput from '../../form/price-input/PriceInput';
 import PointDetails from '../../form/point-details/PointDetails';
 import lcs from './PointEditForm.module.scss';
 import stylesPoint from '../Point.module.scss';
-import {useState} from 'react';
 
-export default function PointEditForm({point, onActivatePoint, setPoints, isNewPointOpen, setIsNewPointOpen}) {
+export default function PointEditForm({point}) {
+  const {pointArray, newPointDisabled, activePoint} = useContext(AppContext);
+  const {setPoints} = pointArray;
+  const {isNewPointDisabled, setIsNewPointDisabled} = newPointDisabled;
+  const {setActivePointId} = activePoint;
+
   const {getDestinationById, isDestination} = useDestinations();
   const {getMatchingOffers} = useOffers();
   const [pointState, setPointState] = useState(point);
   const {id, type, destination, basePrice, dateFrom, dateTo, offers} = pointState;
   const pointDestination = getDestinationById(destination);
   const matchingOffers = getMatchingOffers(type);
-  const cancelButtonText = isNewPointOpen ? 'Cancel' : 'Delete';
+  const cancelButtonText = isNewPointDisabled ? 'Cancel' : 'Delete';
 
   function handleRollupClick() {
-    onActivatePoint('');
+    setActivePointId('');
   }
 
   function handleResetClick() {
-    if (isNewPointOpen) {
-      setIsNewPointOpen(false);
+    if (isNewPointDisabled) {
+      setIsNewPointDisabled(false);
     } else {
       setPoints((eventsArray) => eventsArray.filter((event) => event.id !== id));
     }
@@ -34,14 +40,14 @@ export default function PointEditForm({point, onActivatePoint, setPoints, isNewP
 
   function handleFormSubmit(evt) {
     evt.preventDefault();
-    if (isNewPointOpen) {
+    if (isNewPointDisabled) {
       setPoints((eventsArray) => {
         return [pointState, ...eventsArray];
       })
-      setIsNewPointOpen(false);
+      setIsNewPointDisabled(false);
     } else {
       setPoints((eventsArray) => eventsArray.map((event) => event.id === id ? pointState : event));
-      onActivatePoint('');
+      setActivePointId('');
     }
   }
 
@@ -75,7 +81,7 @@ export default function PointEditForm({point, onActivatePoint, setPoints, isNewP
             {cancelButtonText}
           </button>
 
-          {isNewPointOpen ||
+          {isNewPointDisabled ||
             <button
               className={stylesPoint.eventRollupBtn}
               type="button"

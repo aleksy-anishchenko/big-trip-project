@@ -1,8 +1,16 @@
 import lcs from './FilterItem.module.scss';
+import {useContext} from 'react';
+import AppContext from '../../../context.js';
 
-export default function FilterItem({value}) {
-  const isChecked = value === 'EVERYTHING';
+export default function FilterItem({value, onChange}) {
+  const {filter} = useContext(AppContext);
+  const {selectedFilter} = filter;
   const filterValue = `filter-${value.toLowerCase()}`
+
+  function handleFilterChange(evt) {
+    onChange && onChange(evt);
+  }
+
   return (
     <div className={lcs.tripFiltersFilter}>
       <input
@@ -11,8 +19,8 @@ export default function FilterItem({value}) {
         type="radio"
         name="trip-filter"
         value={value.toLowerCase()}
-        checked={isChecked}
-        onChange={() => {}}
+        checked={value.toLowerCase() === selectedFilter.toLowerCase()}
+        onChange={handleFilterChange}
       />
       <label className={lcs.tripFiltersFilterLabel} htmlFor={filterValue}>{value}</label>
     </div>
